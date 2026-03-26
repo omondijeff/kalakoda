@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syncopate:wght@400;700&display=swap');
+
+:root {
+  --brand-red: #ED121F;
+  --brand-green: #109D4A;
+  --bg-dark: #000000;
+  --bg-card: #0a0a0a;
+  --text: #ffffff;
+  --text-muted: #888888;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Syncopate', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 2rem; }
+}
+
+/* World-Class UI elements */
+.btn {
+  padding: 1.2rem 2.5rem;
+  font-family: 'Syncopate', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: var(--brand-red);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: white;
+  color: black;
+  transform: translateY(-5px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.btn-outline:hover {
+  background: white;
+  color: black;
+  border-color: white;
+}
+
+/* Editorial Sections */
+.section-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: 4rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100px;
+  height: 8px;
+  background: var(--brand-red);
+}
+
+.section-title.green::after {
+  background: var(--brand-green);
+}
+
+/* Glassmorphism 2.0 */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.glass:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--brand-red);
+}
+
+/* Layout Utilities */
+.scroll-section {
+  min-height: 100vh;
+  padding: 6rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+}
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; gap: 4rem; }
+}
+
+.reveal-text {
+  overflow: hidden;
+}
+
+.reveal-text span {
+  display: block;
+}
+
+/* Fighters Strip Responsiveness */
+@media (max-width: 1024px) {
+  .fighters-strip {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 2rem;
+  }
+  .fighters-strip > div {
+    min-width: 85vw;
+    scroll-snap-align: start;
+  }
+}
+
+/* Event Split Card Responsiveness */
+@media (max-width: 1024px) {
+  .event-card-split {
+    grid-template-columns: 1fr !important;
+  }
+}
