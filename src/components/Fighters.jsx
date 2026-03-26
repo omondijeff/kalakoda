@@ -60,7 +60,7 @@ const Fighters = () => {
           </div>
         </div>
 
-        <div className="fighters-strip" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+        <div className="fighters-strip">
            {fighters.map((f, index) => (
              <motion.div
                 key={index}
@@ -68,6 +68,7 @@ const Fighters = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="fighter-card"
                 style={{ 
                    height: '600px', 
                    position: 'relative', 
@@ -112,6 +113,31 @@ const Fighters = () => {
       <style>{`
         .brand-green { color: var(--brand-green); }
         .brand-red { color: var(--brand-red); }
+        .fighters-strip {
+           display: grid;
+           grid-template-columns: repeat(4, 1fr);
+           gap: 1rem;
+        }
+        @media (max-width: 1024px) {
+          .fighters-strip {
+             display: flex;
+             overflow-x: auto;
+             padding-bottom: 2rem;
+             scroll-snap-type: x mandatory;
+             gap: 1.5rem;
+          }
+          .fighter-card {
+             flex: 0 0 85%;
+             scroll-snap-align: center;
+             height: 500px !important;
+          }
+          .fighters-strip::-webkit-scrollbar {
+             height: 4px;
+          }
+          .fighters-strip::-webkit-scrollbar-thumb {
+             background: var(--brand-red);
+          }
+        }
       `}</style>
     </section>
   );

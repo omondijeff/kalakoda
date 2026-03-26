@@ -44,10 +44,10 @@ const Header = () => {
              <img src="/kalakoda.png" alt="Kalakoda Logo" style={{ height: '40px', display: 'block' }} />
           </div>
           <div>
-            <span style={{ fontFamily: 'Syncopate', fontWeight: 700, fontSize: '1.8rem', letterSpacing: '-0.08em', color: 'white' }}>KALAKODA</span>
+            <span className="brand-text" style={{ fontFamily: 'Syncopate', fontWeight: 700, fontSize: '1.8rem', letterSpacing: '-0.08em', color: 'white' }}>KALAKODA</span>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <div style={{ height: '2px', background: 'var(--brand-green)', width: '20px' }}></div>
-              <span style={{ fontSize: '0.65rem', fontWeight: 900, letterSpacing: '0.4em', color: 'var(--brand-green)' }}>Promotions</span>
+              <span className="brand-subtext" style={{ fontSize: '0.65rem', fontWeight: 900, letterSpacing: '0.4em', color: 'var(--brand-green)' }}>Promotions</span>
             </div>
           </div>
         </NavLink>
@@ -124,13 +124,23 @@ const Header = () => {
               left: 0, 
               width: '100%', 
               height: '100vh',
-              padding: '8rem 4rem 4rem',
               zIndex: 1000
             }}
           >
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
-              {navLinks.map((link) => (
-                <li key={link.path}>
+            <div style={{ position: 'absolute', top: '1.5rem', right: '4rem' }}>
+               <button onClick={() => setIsOpen(false)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer' }}>
+                 <X size={40} />
+               </button>
+            </div>
+
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%', justifyContent: 'center' }}>
+              {navLinks.map((link, i) => (
+                <motion.li 
+                  key={link.path}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * i }}
+                >
                   {link.external ? (
                     <a 
                       href={link.path}
@@ -138,10 +148,11 @@ const Header = () => {
                       rel="noopener noreferrer"
                       style={{
                         fontFamily: 'Syncopate',
-                        fontSize: '3rem',
+                        fontSize: '1.8rem',
                         fontWeight: 800,
                         textTransform: 'uppercase',
-                        color: 'var(--brand-green)'
+                        color: 'var(--brand-green)',
+                        letterSpacing: '-0.05em'
                       }}
                     >
                       {link.name}
@@ -149,18 +160,19 @@ const Header = () => {
                   ) : (
                     <NavLink 
                       to={link.path}
-                      style={{
+                      style={({ isActive }) => ({
                         fontFamily: 'Syncopate',
-                        fontSize: '3rem',
+                        fontSize: '1.8rem',
                         fontWeight: 800,
                         textTransform: 'uppercase',
-                        color: 'white'
-                      }}
+                        color: isActive ? 'var(--brand-red)' : 'white',
+                        letterSpacing: '-0.05em'
+                      })}
                     >
                       {link.name}
                     </NavLink>
                   )}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
@@ -171,6 +183,15 @@ const Header = () => {
         .md-flex { @media (min-width: 1025px) { display: flex !important; } }
         .md-none { @media (min-width: 1025px) { display: none !important; } }
         .z-100 { z-index: 2000 !important; }
+
+        @media (max-width: 480px) {
+          .brand-text { font-size: 1.3rem !important; }
+          .brand-subtext { font-size: 0.5rem !important; }
+          header .container { padding: 0 1.5rem !important; }
+        }
+        @media (max-width: 350px) {
+           .brand-text { font-size: 1.1rem !important; }
+        }
       `}</style>
     </header>
   );

@@ -30,32 +30,33 @@ const Hero = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: 'circOut' }}
           style={{ position: 'relative', width: '100%' }}
+          className="hero-content"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }} className="hero-eyebrow">
             <div style={{ padding: '0.4rem 1rem', background: 'var(--brand-green)', color: 'white', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '0.2rem', fontSize: '0.7rem' }}>
               AFRICA'S NO. 1
             </div>
-            <div style={{ height: '1px', background: 'var(--glass-border)', flexGrow: 1 }}></div>
+            <div style={{ height: '1px', background: 'var(--glass-border)', flexGrow: 1 }} className="hide-mobile"></div>
           </div>
           
-          <h1 style={{ fontSize: 'clamp(4rem, 10vw, 8.5rem)', lineHeight: 0.8, marginBottom: '4rem', letterSpacing: '-0.1em' }}>
+          <h1 style={{ fontSize: 'clamp(2rem, 10vw, 8.5rem)', lineHeight: 0.8, marginBottom: '4rem', letterSpacing: '-0.1em' }}>
             ONE RING, <br />
             <span style={{ color: 'var(--brand-red)' }}>NO BORDERS</span>
           </h1>
           
-          <div className="grid-2" style={{ width: '100%', gap: '4rem', marginBottom: '4rem' }}>
+          <div className="grid-2-mobile-stack" style={{ width: '100%', gap: '4rem', marginBottom: '4rem' }}>
             <div style={{ maxWidth: '400px' }}>
               <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: 1.4 }}>
                 Unifying the African continent through world-class boxing, elite entertainment, and high-specification broadcast.
               </p>
             </div>
-            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }} className="hero-btns">
               <a 
                 href="https://kalakoda.hustlesasa.shop/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-primary" 
-                style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)', paddingRight: '4rem', textDecoration: 'none' }}
+                className="btn btn-primary hero-main-btn" 
+                style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)', paddingRight: '3rem', textDecoration: 'none' }}
               >
                 Get Tickets <MoveRight size={20} />
               </a>
@@ -71,7 +72,7 @@ const Hero = () => {
         </motion.div>
 
         {/* Dynamic Decoration List */}
-        <div style={{ position: 'absolute', bottom: '10vh', right: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1.5rem', opacity: 0.3 }}>
+        <div className="hide-mobile" style={{ position: 'absolute', bottom: '10vh', right: '4rem', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1.5rem', opacity: 0.3 }}>
            <div style={{ fontSize: '0.6rem', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '1em' }}>PROXIMITY • POWER • PURPOSE</div>
            <div style={{ display: 'flex', gap: '2rem' }}>
              {[1,2,3,4].map(i => <div key={i} style={{ width: '1px', height: '40px', background: 'white' }}></div>)}
@@ -83,6 +84,35 @@ const Hero = () => {
       <style>{`
         h1 span {
            -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+        }
+        @media (max-width: 768px) {
+          .hero-content {
+             text-align: center;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+          }
+          .hero-eyebrow {
+             justify-content: center;
+             width: 100%;
+          }
+          .hero-btns {
+             justify-content: center;
+             flex-direction: column;
+             gap: 1rem !important;
+             width: 100%;
+          }
+          .hero-main-btn {
+             padding-right: 2.5rem !important;
+             width: 100%;
+             justify-content: center;
+          }
+          .grid-2-mobile-stack {
+             display: flex;
+             flex-direction: column;
+             gap: 2rem !important;
+          }
+          .hide-mobile { display: none !important; }
         }
       `}</style>
     </section>
