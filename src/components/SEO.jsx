@@ -7,7 +7,7 @@ const SEO = ({ title, description, image, url }) => {
   const siteDescription = "The premier Pan-African Sport & Entertainment Promotion company dedicated to revolutionizing African live events.";
   const metaDescription = description || siteDescription;
   const siteUrl = "https://kalakoda.vercel.app";
-  const metaImage = siteUrl + (image || "/og-image.png");
+  const metaImage = siteUrl + (image || "/og-image.jpg");
   const metaUrl = siteUrl + (url || "");
 
   return (
